@@ -1,0 +1,21 @@
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NEXT_PUBLIC_STRAPI_URL = "/api"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production]
+  command = "npm run build"
+  environment = { NEXT_PUBLIC_STRAPI_URL = "/api" }
+
+[context.deploy-preview]
+  command = "npm run build"
+  environment = { NEXT_PUBLIC_STRAPI_URL = "/api" }

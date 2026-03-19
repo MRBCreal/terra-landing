@@ -1,18 +1,30 @@
 module.exports = ({ env }) => [
   'strapi::errors',
-  'strapi::security',
-  'strapi::cors',
-  'strapi::query',
-  'strapi::body',
-  'strapi::favicon',
-  'strapi::public',
+  {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: {
+        directives: {
+          'script-src': ["'self'", "'unsafe-inline'", 'https:', 'http:'],
+          'img-src': ["'self'", 'data:', 'https:', 'http:'],
+          'connect-src': ["'self'", 'https:', 'http:'],
+          'media-src': ["'self'", 'https:', 'http:'],
+        },
+      },
+    },
+  },
   {
     name: 'strapi::cors',
     config: {
-      origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
-      headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
+      origin: ['https://terra-landing.netlify.app', 'http://localhost:3000', 'http://localhost:1337'],
       credentials: true,
     },
   },
+  'strapi::poweredBy',
+  'strapi::logger',
+  'strapi::query',
+  'strapi::body',
+  'strapi::session',
+  'strapi::favicon',
+  'strapi::public',
 ];
