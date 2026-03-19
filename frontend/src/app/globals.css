@@ -1,0 +1,369 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+  }
+  
+  body { 
+    font-family: 'Inter', sans-serif; 
+    overflow-x: hidden; 
+  }
+  
+  html { 
+    scroll-behavior: smooth; 
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { 
+    width: 8px; 
+  }
+  
+  ::-webkit-scrollbar-track { 
+    background: #f1f5f9; 
+  }
+  
+  ::-webkit-scrollbar-thumb { 
+    background: #003865; 
+    border-radius: 4px; 
+  }
+  
+  ::-webkit-scrollbar-thumb:hover { 
+    background: #2563eb; 
+  }
+}
+
+/* Scroll Animations */
+.reveal { 
+  opacity: 0; 
+  transform: translateY(60px); 
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+.reveal.active { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
+
+.reveal-left { 
+  opacity: 0; 
+  transform: translateX(-60px); 
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+.reveal-left.active { 
+  opacity: 1; 
+  transform: translateX(0); 
+}
+
+.reveal-right { 
+  opacity: 0; 
+  transform: translateX(60px); 
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+.reveal-right.active { 
+  opacity: 1; 
+  transform: translateX(0); 
+}
+
+.reveal-scale { 
+  opacity: 0; 
+  transform: scale(0.9); 
+  transition: opacity 0.8s ease, transform 0.8s ease; 
+}
+
+.reveal-scale.active { 
+  opacity: 1; 
+  transform: scale(1); 
+}
+
+/* Stagger delays */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+.delay-500 { transition-delay: 0.5s; }
+
+/* Parallax */
+.parallax-bg { 
+  will-change: transform; 
+  transition: transform 0.1s linear; 
+}
+
+/* Nav transition */
+.nav-scrolled { 
+  background: rgba(0, 30, 58, 0.97) !important; 
+  backdrop-filter: blur(20px); 
+  box-shadow: 0 4px 30px rgba(0,0,0,0.15); 
+}
+
+.nav-scrolled .nav-link { 
+  color: #d1d5db !important; 
+}
+
+.nav-scrolled .nav-link:hover { 
+  color: #60a5fa !important; 
+}
+
+.nav-scrolled .nav-logo { 
+  color: white !important; 
+}
+
+/* Project card hover */
+.project-card .project-overlay { 
+  opacity: 0; 
+  transition: opacity 0.5s ease; 
+}
+
+.project-card:hover .project-overlay { 
+  opacity: 1; 
+}
+
+.project-card .project-img { 
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+.project-card:hover .project-img { 
+  transform: scale(1.08); 
+}
+
+.project-card .project-info { 
+  transform: translateY(20px); 
+  opacity: 0; 
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+.project-card:hover .project-info { 
+  transform: translateY(0); 
+  opacity: 1; 
+}
+
+/* Service card hover */
+.service-card { 
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+.service-card:hover { 
+  transform: translateY(-8px); 
+  box-shadow: 0 25px 60px rgba(0,0,0,0.12); 
+}
+
+.service-card .service-icon { 
+  transition: transform 0.4s ease; 
+}
+
+.service-card:hover .service-icon { 
+  transform: scale(1.15); 
+}
+
+/* Perspectives carousel */
+.carousel-track { 
+  display: flex; 
+  gap: 32px; 
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+.perspective-card { 
+  min-width: 380px; 
+  transition: all 0.4s ease; 
+}
+
+.perspective-card:hover { 
+  transform: translateY(-4px); 
+}
+
+.perspective-card .card-img { 
+  transition: transform 0.6s ease; 
+}
+
+.perspective-card:hover .card-img { 
+  transform: scale(1.05); 
+}
+
+/* Mobile menu */
+.mobile-menu { 
+  transform: translateX(100%); 
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+.mobile-menu.open { 
+  transform: translateX(0); 
+}
+
+.mobile-overlay { 
+  opacity: 0; 
+  pointer-events: none; 
+  transition: opacity 0.3s ease; 
+}
+
+.mobile-overlay.open { 
+  opacity: 1; 
+  pointer-events: all; 
+}
+
+/* Cookie banner animation */
+@keyframes slideUp {
+  from { 
+    transform: translateY(100%); 
+    opacity: 0; 
+  }
+  to { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+.cookie-banner { 
+  animation: slideUp 0.5s ease 1s forwards; 
+  opacity: 0; 
+}
+
+/* CTA section gradient animation */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Button ripple effect */
+.btn-ripple { 
+  position: relative; 
+  overflow: hidden; 
+}
+
+.btn-ripple::after {
+  content: ''; 
+  position: absolute; 
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  transform: scale(0); 
+  transition: transform 0.5s ease;
+}
+
+.btn-ripple:hover::after { 
+  transform: scale(2.5); 
+}
+
+/* Counter animation */
+.counter { 
+  display: inline-block; 
+}
+.delay-500 {
+  transition-delay: 0.5s;
+}
+.parallax-bg {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+/* Hero text animation */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-animate {
+  animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-animate-delay-1 {
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.hero-animate-delay-2 {
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+.hero-animate-delay-3 {
+  animation-delay: 0.9s;
+  opacity: 0;
+}
+
+/* Mobile Menu */
+.mobile-overlay {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu {
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu.active {
+  transform: translateX(0);
+}
+
+/* Project Cards */
+.project-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-img {
+  transform: scale(1.05);
+}
+
+.project-overlay {
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 0.9;
+}
+
+/* Sticky Nav */
+.nav-scrolled {
+  background-color: rgba(0, 30, 58, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Lazy Loading */
+.lazy-load {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lazy-load.loaded {
+  opacity: 1;
+}
+
+/* Counter Animation */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counter {
+  animation: countUp 0.5s ease-out;
+}

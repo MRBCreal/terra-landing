@@ -1,0 +1,32 @@
+{
+  "name": "terra-strapi2-backend",
+  "version": "1.0.0",
+  "description": "Backend CMS Strapi para Terra Building Companies",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@strapi/plugin-content-manager": "4.24.2",
+    "@strapi/plugin-content-type-builder": "4.24.2",
+    "@strapi/plugin-email": "4.24.2",
+    "@strapi/plugin-i18n": "4.24.2",
+    "@strapi/plugin-upload": "4.24.2",
+    "@strapi/plugin-users-permissions": "4.24.2",
+    "@strapi/strapi": "4.24.2",
+    "axios": "^1.13.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^5.3.4",
+    "scheduler": "^0.27.0",
+    "sqlite3": "5.1.6",
+    "styled-components": "^5.3.11"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

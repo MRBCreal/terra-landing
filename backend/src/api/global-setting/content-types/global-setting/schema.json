@@ -1,0 +1,115 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_settings",
+  "info": {
+    "singularName": "global-setting",
+    "pluralName": "global-settings",
+    "displayName": "Configuración Global",
+    "description": "Configuración general del sitio Terra"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "siteName": {
+      "type": "string",
+      "default": "Terra Building Companies"
+    },
+    "siteDescription": {
+      "type": "text",
+      "default": "Construcción para Resultados Superiores y Duraderos"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "heroTitle": {
+      "type": "string",
+      "default": "NOS ENCANTA CONSTRUIR. ES QUIENES SOMOS Y LO QUE HACEMOS."
+    },
+    "heroSubtitle": {
+      "type": "string",
+      "default": "Resultados Superiores. Buenas Experiencias Para Todos"
+    },
+    "heroDescription": {
+      "type": "text",
+      "default": "Juntos, superamos los desafios mas dificiles y maximizamos los resultados para nuestros clientes, fuerza laboral, comunidades y familias."
+    },
+    "heroBackgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "aboutTitle": {
+      "type": "string",
+      "default": "UN SOCIO COLABORATIVO DE CONFIANZA ENFOCADO EN SUS METAS"
+    },
+    "aboutContent": {
+      "type": "richtext",
+      "default": "Desde nuestros enfoques de seguridad y calidad lideres en la industria, hasta nuestra pasion por la entrega progresiva, la innovacion y la tecnologia, brindamos garantia centrandonos en lo que le importa a usted."
+    },
+    "aboutImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "projectsTitle": {
+      "type": "string",
+      "default": "HEMOS HECHO UNA COSA DURANTE CASI 160 ANOS: CONSTRUIR"
+    },
+    "projectsSubtitle": {
+      "type": "text",
+      "default": "Armamos equipos de alto desempeno listos para resolver cualquier desafio y lograr tus metas"
+    },
+    "servicesTitle": {
+      "type": "string",
+      "default": "Solución de Problemas"
+    },
+    "servicesSubtitle": {
+      "type": "text",
+      "default": "Enfrentamos los desafíos más complejos con innovación y experiencia"
+    },
+    "socialMediaFacebook": {
+      "type": "string"
+    },
+    "socialMediaInstagram": {
+      "type": "string"
+    },
+    "socialMediaLinkedin": {
+      "type": "string"
+    },
+    "socialMediaYoutube": {
+      "type": "string"
+    },
+    "contactAddress": {
+      "type": "string"
+    },
+    "contactPhone": {
+      "type": "string"
+    },
+    "contactEmail": {
+      "type": "email"
+    },
+    "footerAbout": {
+      "type": "text",
+      "default": "Más de 160 años construyendo el futuro con excelencia y compromiso."
+    },
+    "seoMetaTitle": {
+      "type": "string",
+      "default": "Terra - Construcción para Resultados Superiores y Duraderos"
+    },
+    "seoMetaDescription": {
+      "type": "text",
+      "default": "Más de 160 años construyendo el futuro. Especialistas en construcción industrial, infraestructura y proyectos de gran escala."
+    },
+    "seoKeywords": {
+      "type": "text",
+      "default": "construcción, infraestructura, proyectos industriales, Terra Building Companies"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "perspectives",
+  "info": {
+    "singularName": "perspective",
+    "pluralName": "perspectives",
+    "displayName": "Perspectivas",
+    "description": "Artículos de blog y noticias de Terra"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "excerpt": {
+      "type": "text"
+    },
+    "author": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "default": "Noticias"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "publishedAt": {
+      "type": "datetime"
+    }
+  }
+}
