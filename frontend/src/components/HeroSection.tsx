@@ -2,8 +2,27 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
+interface HeroData {
+  id: number;
+  attributes: {
+    title: string;
+    subtitle: string;
+    buttonText: string;
+    buttonLink: string;
+    backgroundImage: {
+      data: {
+        attributes: {
+          url: string;
+        };
+      };
+    };
+  };
+}
+
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
+  const [heroData, setHeroData] = useState<HeroData | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,6 +31,26 @@ export default function HeroSection() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const fetchHeroData = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/heros?populate=*`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.data && data.data.length > 0) {
+            setHeroData(data.data[0]);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching hero data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHeroData();
   }, []);
 
   return (
@@ -24,7 +63,10 @@ export default function HeroSection() {
         }}
       >
         <img 
-          src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=2000"
+          src={
+            heroData?.attributes.backgroundImage?.data?.attributes.url 
+            || "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=2000"
+          }
           alt="Terra Construction"
           className="w-full h-[120%] object-cover object-center"
           style={{ marginTop: '-10%' }}
@@ -45,32 +87,47 @@ export default function HeroSection() {
 
       {/* Hero Content */}
       <div className="relative z-20 text-center text-white px-6 max-w-6xl mx-auto">
-        <p className="hero-animate text-sm md:text-base font-semibold uppercase tracking-[4px] text-terra-400 mb-6">
-          Resultados Superiores. Buenas Experiencias Para Todos
-        </p>
-        <h1 className="hero-animate hero-animate-delay-1 text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-black leading-[1.05] tracking-tight mb-8">
-          NOS ENCANTA CONSTRUIR.<br/>
-          <span className="bg-gradient-to-r from-white via-terra-300 to-white bg-clip-text text-transparent">
-            ES QUIENES SOMOS Y LO QUE HACEMOS.
-          </span>
-        </h1>
-        <p className="hero-animate hero-animate-delay-2 text-lg md:text-2xl font-light max-w-3xl mx-auto mb-12 text-white/80 leading-relaxed">
-          Juntos, superamos los desafios mas dificiles y maximizamos los resultados para nuestros clientes, fuerza laboral, comunidades y familias.
-        </p>
-        <div className="hero-animate hero-animate-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
-          <a 
-            href="#projects" 
-            className="btn-ripple inline-block bg-terra-600 hover:bg-terra-500 transition-colors px-10 py-4 text-sm font-bold uppercase tracking-[2px] rounded"
-          >
-            Ver Nuestro Trabajo
-          </a>
-          <a 
-            href="#careers" 
-            className="btn-ripple inline-block border-2 border-white/40 hover:bg-white hover:text-terra-900 transition-all px-10 py-4 text-sm font-bold uppercase tracking-[2px] rounded"
-          >
-            Encuentra Una Carrera
-          </a>
-        </div>
+        {loading ? (
+          <div className="animate-pulse">
+            <div className="h-4 bg-white/20 rounded mb-6 w-64 mx-auto"></div>
+            <div className="h-16 bg-white/20 rounded mb-8 w-3/4 mx-auto"></div>
+            <div className="h-8 bg-white/20 rounded mb-12 w-2/3 mx-auto"></div>
+            <div className="flex gap-4 justify-center">
+              <div className="h-12 bg-white/20 rounded w-32"></div>
+              <div className="h-12 bg-white/20 rounded w-32"></div>
+            </div>
+          </div>
+        ) : heroData ? (
+          <>
+            <p className="hero-animate text-sm md:text-base font-semibold uppercase tracking-[4px] text-terra-400 mb-6">
+              Resultados Superiores. Buenas Experiencias Para Todos
+            </p>
+            <h1 className="hero-animate hero-animate-delay-1 text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-black leading-[1.05] tracking-tight mb-8">
+              {heroData.attributes.title}<br/>
+              <span className="bg-gradient-to-r from-white via-terra-300 to-white bg-clip-text text-transparent">
+                {heroData.attributes.subtitle}
+              </span>
+            </h1>
+            <div className="hero-animate hero-animate-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href={heroData.attributes.buttonLink} 
+                className="btn-ripple inline-block bg-terra-600 hover:bg-terra-500 transition-colors px-10 py-4 text-sm font-bold uppercase tracking-[2px] rounded"
+              >
+                {heroData.attributes.buttonText}
+              </a>
+              <a 
+                href="#careers" 
+                className="btn-ripple inline-block border-2 border-white/40 hover:bg-white hover:text-terra-900 transition-all px-10 py-4 text-sm font-bold uppercase tracking-[2px] rounded"
+              >
+                Encuentra Una Carrera
+              </a>
+            </div>
+          </>
+        ) : (
+          <div className="text-white">
+            <p>Error loading hero content</p>
+          </div>
+        )}
       </div>
 
       {/* Scroll Indicator */}
