@@ -2,8 +2,7 @@ import dynamic from 'next/dynamic';
 import { getImageUrl } from '@/utils/imageUtils';
 
 const HeroSection = dynamic(() => import('@/components/HeroSection'), {
-  loading: () => <div className="h-screen bg-terra-900 animate-pulse" />,
-  ssr: false
+  loading: () => <div className="h-screen bg-terra-900 animate-pulse" />
 });
 
 // Mock data para mostrar mientras resolvemos la conexión
