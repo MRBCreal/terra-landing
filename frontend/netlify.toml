@@ -7,11 +7,6 @@
   NEXT_PUBLIC_STRAPI_URL = "https://terra-landing-production.up.railway.app"
 
 [[redirects]]
-  from = "/home"
-  to = "/"
-  status = 301
-
-[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
