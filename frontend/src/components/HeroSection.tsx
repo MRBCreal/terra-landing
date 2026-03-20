@@ -2,7 +2,28 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
-export default function HeroSection() {
+interface HeroData {
+  id: number;
+  attributes: {
+    title: string;
+    subtitle: string;
+    buttonText: string;
+    buttonLink: string;
+    backgroundImage: {
+      data: {
+        attributes: {
+          url: string;
+        };
+      };
+    };
+  };
+}
+
+interface HeroSectionProps {
+  heroData?: HeroData | null;
+}
+
+export default function HeroSection({ heroData }: HeroSectionProps) {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -45,32 +66,62 @@ export default function HeroSection() {
 
       {/* Hero Content */}
       <div className="relative z-20 text-center text-white px-6 max-w-6xl mx-auto">
-        <p className="hero-animate text-sm md:text-base font-semibold uppercase tracking-[4px] text-terra-400 mb-6">
-          Resultados Superiores. Buenas Experiencias Para Todos
-        </p>
-        <h1 className="hero-animate hero-animate-delay-1 text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-black leading-[1.05] tracking-tight mb-8">
-          NOS ENCANTA CONSTRUIR.<br/>
-          <span className="bg-gradient-to-r from-white via-terra-300 to-white bg-clip-text text-transparent">
-            ES QUIENES SOMOS Y LO QUE HACEMOS.
-          </span>
-        </h1>
-        <p className="hero-animate hero-animate-delay-2 text-lg md:text-2xl font-light max-w-3xl mx-auto mb-12 text-white/80 leading-relaxed">
-          Juntos, superamos los desafios mas dificiles y maximizamos los resultados para nuestros clientes, fuerza laboral, comunidades y familias.
-        </p>
-        <div className="hero-animate hero-animate-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
-          <a 
-            href="#projects" 
-            className="btn-ripple inline-block bg-terra-600 hover:bg-terra-500 transition-colors px-10 py-4 text-sm font-bold uppercase tracking-[2px] rounded"
-          >
-            Ver Nuestro Trabajo
-          </a>
-          <a 
-            href="#careers" 
-            className="btn-ripple inline-block border-2 border-white/40 hover:bg-white hover:text-terra-900 transition-all px-10 py-4 text-sm font-bold uppercase tracking-[2px] rounded"
-          >
-            Encuentra Una Carrera
-          </a>
-        </div>
+        {heroData ? (
+          <>
+            <p className="hero-animate text-sm md:text-base font-semibold uppercase tracking-[4px] text-terra-400 mb-6">
+              Resultados Superiores. Buenas Experiencias Para Todos
+            </p>
+            <h1 className="hero-animate hero-animate-delay-1 text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-black leading-[1.05] tracking-tight mb-8">
+              {heroData.attributes.title}<br/>
+              <span className="bg-gradient-to-r from-white via-terra-300 to-white bg-clip-text text-transparent">
+                {heroData.attributes.subtitle}
+              </span>
+            </h1>
+            <div className="hero-animate hero-animate-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href={heroData.attributes.buttonLink} 
+                className="btn-ripple inline-block bg-terra-600 hover:bg-terra-500 transition-colors px-10 py-4 text-sm font-bold uppercase tracking-[2px] rounded"
+              >
+                {heroData.attributes.buttonText}
+              </a>
+              <a 
+                href="#careers" 
+                className="btn-ripple inline-block border-2 border-white/40 hover:bg-white hover:text-terra-900 transition-all px-10 py-4 text-sm font-bold uppercase tracking-[2px] rounded"
+              >
+                Encuentra Una Carrera
+              </a>
+            </div>
+          </>
+        ) : (
+          <>
+            <p className="hero-animate text-sm md:text-base font-semibold uppercase tracking-[4px] text-terra-400 mb-6">
+              Resultados Superiores. Buenas Experiencias Para Todos
+            </p>
+            <h1 className="hero-animate hero-animate-delay-1 text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-black leading-[1.05] tracking-tight mb-8">
+              NOS ENCANTA CONSTRUIR.<br/>
+              <span className="bg-gradient-to-r from-white via-terra-300 to-white bg-clip-text text-transparent">
+                ES QUIENES SOMOS Y LO QUE HACEMOS.
+              </span>
+            </h1>
+            <p className="hero-animate hero-animate-delay-2 text-lg md:text-2xl font-light max-w-3xl mx-auto mb-12 text-white/80 leading-relaxed">
+              Juntos, superamos los desafios mas dificiles y maximizamos los resultados para nuestros clientes, fuerza laboral, comunidades y familias.
+            </p>
+            <div className="hero-animate hero-animate-delay-3 flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="#projects" 
+                className="btn-ripple inline-block bg-terra-600 hover:bg-terra-500 transition-colors px-10 py-4 text-sm font-bold uppercase tracking-[2px] rounded"
+              >
+                Ver Nuestro Trabajo
+              </a>
+              <a 
+                href="#careers" 
+                className="btn-ripple inline-block border-2 border-white/40 hover:bg-white hover:text-terra-900 transition-all px-10 py-4 text-sm font-bold uppercase tracking-[2px] rounded"
+              >
+                Encuentra Una Carrera
+              </a>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Scroll Indicator */}
