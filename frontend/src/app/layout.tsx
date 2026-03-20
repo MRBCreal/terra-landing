@@ -16,14 +16,19 @@ export const metadata: Metadata = {
   description: "Terra Building Companies - Más de 160 años construyendo el futuro. Especialistas en construcción industrial, infraestructura y proyectos de gran escala. Resultados superiores y duraderos.",
   keywords: "construcción, infraestructura, proyectos industriales, Terra Building Companies, construcción comercial, ingeniería civil",
   authors: [{ name: "Terra Building Companies, Inc." }],
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   openGraph: {
     type: "website",
-    url: "https://terra.com/",
+    url: "https://terra-landing.netlify.app/",
     title: "Terra - Construcción para Resultados Superiores y Duraderos",
     description: "Más de 160 años construyendo el futuro. Especialistas en construcción industrial, infraestructura y proyectos de gran escala.",
     images: [
       {
-        url: "https://terra.com/og-image.jpg",
+        url: "https://terra-landing.netlify.app/og-image.jpg",
         width: 1200,
         height: 630,
       },
@@ -33,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Terra - Construcción para Resultados Superiores",
     description: "Más de 160 años construyendo el futuro. Especialistas en construcción industrial e infraestructura.",
-    images: ["https://terra.com/og-image.jpg"],
+    images: ["https://terra-landing.netlify.app/og-image.jpg"],
   },
 };
 
