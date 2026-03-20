@@ -1,25 +1,6 @@
 import dynamic from 'next/dynamic';
 import { getImageUrl } from '@/utils/imageUtils';
 
-// Build-time data fetching
-async function getHeroData() {
-  try {
-    const baseUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'https://terra-landing-production.up.railway.app';
-    const res = await fetch(`${baseUrl}/api/heros?populate=*`);
-    
-    if (!res.ok) {
-      console.log('Hero API not available, using default data');
-      return null;
-    }
-    
-    const data = await res.json();
-    return data.data?.[0] || null;
-  } catch (error) {
-    console.log('Error fetching hero data, using default:', error);
-    return null;
-  }
-}
-
 const HeroSection = dynamic(() => import('@/components/HeroSection'), {
   loading: () => <div className="h-screen bg-terra-900 animate-pulse" />
 });
@@ -48,17 +29,14 @@ const mockPerspectives = [
   { id: 4, attributes: { title: "Futuro de la Construcción", category: "Innovación", readingTime: 6 } },
 ];
 
-export default async function HomePage() {
-  // Fetch hero data at build time
-  const heroData = await getHeroData();
-  
+export default function HomePage() {
   const projects = mockProjects;
   const services = mockServices;
   const perspectives = mockPerspectives;
 
   return (
     <div className="min-h-screen bg-white">
-      <HeroSection heroData={heroData} />
+      <HeroSection />
 
       {/* "NOS ENCANTA CONSTRUIR" - ABOUT SECTION */}
       <section id="about" className="py-24 lg:py-32 bg-gray-50 overflow-hidden">

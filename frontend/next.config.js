@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'export',
+  // output: 'export', // Comentado para permitir server-side rendering
   trailingSlash: true,
   images: {
     unoptimized: true,
