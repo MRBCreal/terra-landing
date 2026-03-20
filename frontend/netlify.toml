@@ -4,17 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  NEXT_PUBLIC_STRAPI_URL = "https://terra-landing-production.up.railway.app"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[context.production]
-  command = "npm run build"
-  environment = { NEXT_PUBLIC_STRAPI_URL = "https://terra-landing-production.up.railway.app" }
-
-[context.deploy-preview]
-  command = "npm run build"
-  environment = { NEXT_PUBLIC_STRAPI_URL = "https://terra-landing-production.up.railway.app" }
